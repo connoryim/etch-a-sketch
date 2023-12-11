@@ -13,6 +13,7 @@ function newGrid(k) {
         }
         grid.appendChild(row);
     };
+    getSquares();
 };
 
 const reset = document.querySelector("#reset");
@@ -29,12 +30,28 @@ reset.addEventListener("click",(e)=>{
     newGrid(size);
 })
 
+let mouseDown = false
+
+grid.addEventListener("mousedown",()=>{
+    mouseDown = true
+    console.log("hello")
+})
+
+document.body.onmouseup = () =>{
+    mouseDown = false
+    console.log("goodbye");
+}
 
 function getSquares (){
     let squares = document.getElementsByClassName("column");
     for (i=0; i<squares.length; i++){
         squares[i].addEventListener("mousedown", (e)=>{
             e.target.classList.add("clicked");
+        })
+        squares[i].addEventListener("mouseenter", (e)=>{
+            if (e.type == "mousedown") {
+                e.target.classList.add("clicked");
+            }
         })
     } 
 }
