@@ -40,6 +40,35 @@ document.body.onmouseup = () =>{
     mouseDown = false
 }
 
+let penSelect = true;
+let eraserSelect = false;
+let rainbowSelect = false;
+
+
+
+const pen = document.querySelector("#pen");
+const eraser = document.querySelector("#eraser");
+const rainbow = document.querySelector("#rainbow");
+
+pen.addEventListener("click",()=>{
+    penSelect = true;
+    eraserSelect = false;
+    rainbowSelect = false;
+    console.log("pen");
+})
+
+eraser.addEventListener("click",()=>{
+    penSelect = false;
+    eraserSelect = true;
+    rainbowSelect = false;
+})
+
+rainbow.addEventListener("click",()=>{
+    penSelect = false;
+    eraserSelect = false;
+    rainbowSelect = true;
+})
+
 function getSquares (){
     let squares = document.getElementsByClassName("column");
     for (i=0; i<squares.length; i++){
