@@ -2,11 +2,11 @@ const grid = document.querySelector("#grid");
 const div = document.createElement("div");
 
 
-function newGrid() {
-    for(let i=0; i<16; i++){
+function newGrid(k) {
+    for(let i=0; i<k; i++){
         const row = document.createElement("div");
         row.classList.add("row");
-        for(let j=0; j<16; j++){
+        for(let j=0; j<k; j++){
             const column = document.createElement("div");
             column.classList.add("column");
             row.appendChild(column);
@@ -16,12 +16,13 @@ function newGrid() {
 };
 
 const reset = document.querySelector("#reset");
+
 reset.addEventListener("click",(e)=>{
-    var rows = document.getElementsByClassName("row");
+    let rows = document.getElementsByClassName("row");
     while (rows[0]) {
         rows[0].parentNode.removeChild(rows[0]);
     }
-    newGrid();
+    let size = prompt("What size?",16);
+    newGrid(size);
 })
-
-newGrid();
+newGrid(16);

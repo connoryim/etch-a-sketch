@@ -1,13 +1,20 @@
 .row{
     display: flex;
     flex-direction: row;
+    object-fit: contain;
+    justify-content: space-around;
+    max-height: 100%;
+    max-width: 100%;
+    flex: 1;
     
 }
 
 .column{
     display: inline-block;
     background-color: white;
-    padding: 15px;
+    padding: 1px;
+    align-content: stretch;
+    flex: 1;
     
 }
 
@@ -18,9 +25,10 @@
     border: 12px;
     border-color: grey;
     border-style: solid;
-    height: fit-content;
-    width: fit-content;
+    height: 480px;
+    width: 480px;
     margin-top: 20px;
+    justify-content: space-around;
 }
 
 html, body{
