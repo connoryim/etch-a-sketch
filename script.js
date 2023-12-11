@@ -34,12 +34,10 @@ let mouseDown = false
 
 grid.addEventListener("mousedown",()=>{
     mouseDown = true
-    console.log("hello")
 })
 
 document.body.onmouseup = () =>{
     mouseDown = false
-    console.log("goodbye");
 }
 
 function getSquares (){
@@ -49,7 +47,7 @@ function getSquares (){
             e.target.classList.add("clicked");
         })
         squares[i].addEventListener("mouseenter", (e)=>{
-            if (e.type == "mousedown") {
+            if (mouseDown) {
                 e.target.classList.add("clicked");
             }
         })
