@@ -44,17 +44,14 @@ function getSquares (){
     let squares = document.getElementsByClassName("column");
     for (i=0; i<squares.length; i++){
         squares[i].addEventListener("mousedown", (e)=>{
-            e.target.classList.add("clicked");
+            e.target.style.backgroundColor = "black";
         })
         squares[i].addEventListener("mouseenter", (e)=>{
             if (mouseDown) {
-                e.target.classList.add("clicked");
+                e.target.style.backgroundColor = "black";
             }
         })
     } 
 }
-
-
-
 newGrid(16);
 getSquares();
