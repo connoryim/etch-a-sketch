@@ -23,6 +23,23 @@ reset.addEventListener("click",(e)=>{
         rows[0].parentNode.removeChild(rows[0]);
     }
     let size = prompt("What size?",16);
+    while (size > 100) {
+        size = prompt("Too large, enter a new size",100); 
+    }
     newGrid(size);
 })
+
+
+function getSquares (){
+    let squares = document.getElementsByClassName("column");
+    for (i=0; i<squares.length; i++){
+        squares[i].addEventListener("mousedown", (e)=>{
+            e.target.classList.add("clicked");
+        })
+    } 
+}
+
+
+
 newGrid(16);
+getSquares();

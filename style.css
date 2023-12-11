@@ -36,10 +36,6 @@ html, body{
     background-color: black;
 }
 
-.column:hover{
-    background-color: black;
-}
-
 body{
     display: flex;
     justify-content: space-around;
@@ -47,4 +43,8 @@ body{
 
 button{
     max-height: 20px;
+}
+
+.clicked{
+    background-color: black;
 }
