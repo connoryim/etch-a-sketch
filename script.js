@@ -54,7 +54,6 @@ pen.addEventListener("click",()=>{
     penSelect = true;
     eraserSelect = false;
     rainbowSelect = false;
-    console.log("pen");
 })
 
 eraser.addEventListener("click",()=>{
@@ -73,14 +72,33 @@ function getSquares (){
     let squares = document.getElementsByClassName("column");
     for (i=0; i<squares.length; i++){
         squares[i].addEventListener("mousedown", (e)=>{
-            e.target.style.backgroundColor = "black";
+            if (penSelect){
+                e.target.style.backgroundColor = "black";
+            } else if (eraserSelect){
+                e.target.style.backgroundColor = "white";
+            } else if (rainbowSelect){
+                let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
+                e.target.style.backgroundColor = rainbowColor;
+            }
         })
         squares[i].addEventListener("mouseenter", (e)=>{
             if (mouseDown) {
+                if(penSelect){
                 e.target.style.backgroundColor = "black";
+                }else if (eraserSelect){
+                    e.target.style.backgroundColor = "white";
+                }else if (rainbowSelect){
+                    let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
+                    e.target.style.backgroundColor = rainbowColor;
+                }
             }
         })
     } 
 }
 newGrid(16);
 getSquares();
+
+function rValue(){
+    return Math.floor(Math.random()*255);
+}
+console.log(rValue());
