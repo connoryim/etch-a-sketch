@@ -9,6 +9,7 @@ function newGrid(k) {
         for(let j=0; j<k; j++){
             const column = document.createElement("div");
             column.classList.add("column");
+            column.style.backgroundColor = "white";
             row.appendChild(column);
         }
         grid.appendChild(row);
@@ -43,29 +44,41 @@ document.body.onmouseup = () =>{
 let penSelect = true;
 let eraserSelect = false;
 let rainbowSelect = false;
+let shaderSelect = false;
 
 
 
 const pen = document.querySelector("#pen");
 const eraser = document.querySelector("#eraser");
 const rainbow = document.querySelector("#rainbow");
+const shade = document.querySelector("#shade");
 
 pen.addEventListener("click",()=>{
     penSelect = true;
     eraserSelect = false;
     rainbowSelect = false;
+    shaderSelect = false;
 })
 
 eraser.addEventListener("click",()=>{
     penSelect = false;
     eraserSelect = true;
     rainbowSelect = false;
+    shaderSelect = false;
 })
 
 rainbow.addEventListener("click",()=>{
     penSelect = false;
     eraserSelect = false;
     rainbowSelect = true;
+    shaderSelect = false;
+})
+
+shade.addEventListener("click",() =>{
+    penSelect = false;
+    eraserSelect = false;
+    rainbowSelect = false;
+    shaderSelect = true;
 })
 
 function getSquares (){
@@ -90,6 +103,8 @@ function getSquares (){
                 }else if (rainbowSelect){
                     let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
                     e.target.style.backgroundColor = rainbowColor;
+                    let value = window.getComputedStyle(e.target,null).getPropertyValue("background-color");
+                    console.log(value);
                 }
             }
         })
@@ -101,4 +116,3 @@ getSquares();
 function rValue(){
     return Math.floor(Math.random()*255);
 }
-console.log(rValue());
