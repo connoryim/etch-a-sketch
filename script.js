@@ -44,7 +44,7 @@ document.body.onmouseup = () =>{
 let penSelect = true;
 let eraserSelect = false;
 let rainbowSelect = false;
-let shaderSelect = false;
+let shadeSelect = false;
 
 
 
@@ -57,34 +57,34 @@ pen.addEventListener("click",()=>{
     penSelect = true;
     eraserSelect = false;
     rainbowSelect = false;
-    shaderSelect = false;
+    shadeSelect = false;
 })
 
 eraser.addEventListener("click",()=>{
     penSelect = false;
     eraserSelect = true;
     rainbowSelect = false;
-    shaderSelect = false;
+    shadeSelect = false;
 })
 
 rainbow.addEventListener("click",()=>{
     penSelect = false;
     eraserSelect = false;
     rainbowSelect = true;
-    shaderSelect = false;
+    shadeSelect = false;
 })
 
 shade.addEventListener("click",() =>{
     penSelect = false;
     eraserSelect = false;
     rainbowSelect = false;
-    shaderSelect = true;
+    shadeSelect = true;
 })
 
 function getSquares (){
     let squares = document.getElementsByClassName("column");
     for (i=0; i<squares.length; i++){
-        squares[i].addEventListener("mousedown", (e)=>{
+        squares[i].addEventListener("click", (e)=>{
             if (penSelect){
                 e.target.style.backgroundColor = "black";
             } else if (eraserSelect){
@@ -92,6 +92,10 @@ function getSquares (){
             } else if (rainbowSelect){
                 let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
                 e.target.style.backgroundColor = rainbowColor;
+            } else if(shadeSelect){
+                let newShade = shadeValue(colorValue(e.target))
+                console.log(newShade);
+                e.target.style.backgroundColor = newShade;
             }
         })
         squares[i].addEventListener("mouseenter", (e)=>{
@@ -103,16 +107,32 @@ function getSquares (){
                 }else if (rainbowSelect){
                     let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
                     e.target.style.backgroundColor = rainbowColor;
-                    let value = window.getComputedStyle(e.target,null).getPropertyValue("background-color");
-                    console.log(value);
+
                 }
             }
         })
     } 
 }
 newGrid(16);
-getSquares();
 
 function rValue(){
     return Math.floor(Math.random()*255);
+}
+
+    function colorValue(value){
+        let intial = window.getComputedStyle(value,null).getPropertyValue("background-color");
+    return  newColor = intial.substring(4,intial.length-1).replace(/ /g,"").split(",");
+    
+}
+
+function shadeValue(value){
+    let shadeColor = "rgba("
+    for(i=0; i<3; i++){
+        if(i===2){
+            shadeColor = shadeColor + Math.round(value[i]*0.9) + ")"
+            continue;
+        }
+        shadeColor = shadeColor + Math.round(value[i]*0.9) + ","
+    }
+    return shadeColor;
 }
