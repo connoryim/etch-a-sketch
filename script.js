@@ -107,7 +107,10 @@ function getSquares (){
                 }else if (rainbowSelect){
                     let rainbowColor = "rgba("+rValue()+","+rValue()+","+rValue()+")";
                     e.target.style.backgroundColor = rainbowColor;
-
+                }else if(shadeSelect){
+                    let newShade = shadeValue(colorValue(e.target))
+                    console.log(newShade);
+                    e.target.style.backgroundColor = newShade;
                 }
             }
         })
@@ -129,10 +132,10 @@ function shadeValue(value){
     let shadeColor = "rgba("
     for(i=0; i<3; i++){
         if(i===2){
-            shadeColor = shadeColor + Math.round(value[i]*0.9) + ")"
+            shadeColor = shadeColor + Math.round(value[i]-26) + ")"
             continue;
         }
-        shadeColor = shadeColor + Math.round(value[i]*0.9) + ","
+        shadeColor = shadeColor + Math.round(value[i]-26) + ","
     }
     return shadeColor;
 }
